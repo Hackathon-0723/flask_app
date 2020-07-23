@@ -13,6 +13,10 @@ import string
 #from PIL import Image
 import pymysql
 
+from src.model import MLModel
+
+mymodel = MLModel('../ml/test.pt')
+
 app = Flask(__name__)
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'gif'])
@@ -67,7 +71,10 @@ def index():
 
 def gen(camera):
     while True:
-        frame = camera.get_frame()
+        image = camera.get_frame()
+        mymodel.predict(image)
+        ret, jpeg = cv2.imencode('.jpg', image)
+        frame = jpeg.tobytes()
         yield (b'--frame\r\n'
               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
         #return 1
@@ -92,8 +99,8 @@ def uploaded_file(filename):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
-# 0.0.0.0はすべてのアクセスを受け付けます。    
+    app.run(host='0.0.0.0', debug=True, port=6006)
+# 0.0.0.0はすべてのアクセスを受け付けます。
 # webブラウザーには、「localhost:5000」と入力
 
 
