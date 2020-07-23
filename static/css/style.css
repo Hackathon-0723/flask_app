@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+body {
+  background: #0ff;
+}
+
+.image_size img {
+  width: 10px;    /* 横幅を割合で指定 */
+  height: auto;  /* 高さは自動指定 */
+  object-fit: contain;
+}
+
