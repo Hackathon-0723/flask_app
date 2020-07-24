@@ -49,7 +49,7 @@ def img():
 
     if request.method == "GET":
         return render_template('index.html')
-        
+
 
 # test表示用ページ
 @app.route('/view')
@@ -76,7 +76,7 @@ def feed():
 
 def gen():
     while True:
-        with open('./templates/dst/test.jpg', 'rb') as f:
+        with open('./templates/img/test.jpg', 'rb') as f:
             img = f.read()
 
         yield (b'--frame\r\n'
