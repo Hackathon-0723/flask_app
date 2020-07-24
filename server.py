@@ -15,7 +15,7 @@ import pymysql
 
 from src.model import MLModel
 
-mymodel = MLModel('../ml/test.pt')
+mymodel = MLModel('./test.pt')
 
 app = Flask(__name__)
 UPLOAD_FOLDER = './uploads'
@@ -96,7 +96,30 @@ def video_feed():
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route("/img", methods=["POST"])
+def img():
+    img = request.files["video"].read()
 
+    # pillow から opencvに変換
+    imgPIL = Image.open(io.BytesIO(img))
+    imgCV = np.asarray(imgPIL)
+    cv2.imwrite('./templates/dst/test.jpg', imgCV)
+    mymodel.predict(imgCV)
+    # imgCV = cv2.bitwise_not(imgCV)
+    # 好きな処理を入れる
+
+    return "success"
+
+@app.route('/feed')
+def feed():
+    return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+# def gen():
+#     while True:
+#         with open('./templates/dst/test.jpg', 'rb') as f:
+#             img = f.read()
+#         yield (b'--frame\r\n'
+#                b'Content-Type: image/jpeg\r\n\r\n' + img + b'\r\n')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=6006)

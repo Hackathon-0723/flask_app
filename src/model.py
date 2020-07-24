@@ -60,8 +60,9 @@ class Classifier(nn.Module):
 
 
 class MLModel():
-    def __init__(self, model_path):
+    def __init__(self, model_path, threshold=0.8):
         self.net = torch.load(model_path)
+        self.threshold = threshold
         self.transform = transforms.Compose([
                         PIL.Image.fromarray,
                         transforms.Resize([224, 224]),
@@ -74,5 +75,11 @@ class MLModel():
         # 1枚ずつ流れてくる場合
         img = img.unsqueeze(0)
         pred = self.net(img)
-        pred = np.argmax(pred.detach().cpu().numpy(), axis=1)
-        print('predicted label: ', consts.n2l[pred[0]])
+        pred_idx = np.argmax(pred.detach().cpu().numpy(), axis=1)
+        score = pred[0][pred_idx[0]]
+        if score > self.threshold:
+            pred_label = consts.n2l[pred_idx[0]]
+        else:
+            pred_label = None
+        print('predicted label: ', pred_label)
+        return pred_label
