@@ -1,0 +1,201 @@
+@charset "utf-8";
+/*
+* {
+  overflow-x: hidden;
+  padding: 0px !important;
+  margin: 0px !important;
+}*/
+
+body {
+  background-color: #f9f9f9;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .page {
+    width: auto;
+    height: 812px;
+    /*background: rgba(247,247,247,1);*/
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: auto;
+    overflow: hidden;
+  }
+  .logo {
+    position: absolute;
+    margin-left: 20px;
+    top: 10px;
+  }
+  .logo img {
+    background: url("../images/logo.png");
+    max-width: 400px;
+    width: 60%;
+  }
+  /*
+  .v6_1 {
+    width: 375px;
+    height: 88px;
+    background: rgba(136,136,136,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }*/
+  .v6_4 {
+    width: 330px;
+    height: 621px;
+    /*background: url("../images/v6_4.png");*/
+    background: url("../images/v5_1.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: relative;
+    top: 130px;
+    /*left: 24px;*/
+    margin: auto;
+    overflow: hidden;
+  }
+  .v6_0 {
+    width: 330px;
+    height: 621px;
+    background: rgba(196,196,196,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border-top-left-radius: 42px;
+    border-top-right-radius: 42px;
+    border-bottom-left-radius: 42px;
+    border-bottom-right-radius: 42px;
+    overflow: hidden;
+  }
+  /*
+  .v5_1 {
+    width: 417px;
+    height: 678px;
+    background: url("../images/v5_1.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 32px;
+    overflow: hidden;
+  }
+  */
+  .start {
+    width: 330px;
+    height: 621px;
+    background: url("../images/v6_7.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    /*top: 438px;
+    left: 74px;*/
+    top: 130px;
+    /*left: 24px;*/
+    position: absolute;
+    left: 50%;
+    margin-left: -163px;
+    overflow: hidden;
+
+  }
+  .start_btn {
+    width: 327px;
+    height: 621px;
+    /*background: rgba(0,121,189,0.7200000286102295);*/
+    background: rgba(170, 170, 170, 0.5);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+  }
+  .btn_style {
+    width: 147px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 14px;
+    left: 45px;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 45px;
+    opacity: 1;
+    text-align: left;
+  }
+  .login {
+    /*width: 112px;
+    height: 32px;
+    background: rgba(196,196,196,1);*/
+    background: #00D5FF;
+    opacity: 1;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .v6_10 {
+    width: 76px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 121px;
+    left: 255px;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 19px;
+    opacity: 1;
+    text-align: left;
+  }
+
+  .timer {
+    width: 80px;
+    height: 60px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    bottom: 80px;
+    right: 70px;
+    font-size: 25px;
+    text-align: left;
+  }
+  .big_timer {
+    width: 150px;
+    height: 150px;
+    color: rgba(0,0,0,1);
+    position: relative;
+    margin: auto;
+    /*bottom: 80px;
+    right: 70px;
+    font-size: 25px;
+    text-align: left;*/
+    top: -250px;
+  }
+  .big_sec {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    font-size: 50px;
+  }
+
+  .current {
+    color: white;
+    background: #4170BC;
+  }
+  .no-display {
+      display: none;
+  }
+}

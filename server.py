@@ -40,27 +40,25 @@ def getConnection():
 @app.route("/img", methods=["POST","GET"])
 def img():
     if request.method == "POST":
+        print('here')
         img = request.files["video"].read()
-
         # pillow から opencvに変換
         imgPIL = Image.open(io.BytesIO(img))
         imgCV = np.asarray(imgPIL)
+        print(imgCV.shape)
         cv2.imwrite('./templates/dst/test.jpg', imgCV)
-        mymodel.predict(imgCV)
-        # imgCV = cv2.bitwise_not(imgCV)
-    # 好きな処理を入れる
-        return "success"
-        #return render_template('index.html')
-
-    if request.method == "GET":
+        imgCV = cv2.bitwise_not(imgCV)
+        # 好きな処理を入れる
         return render_template('index.html')
+    if request.method == "GET":
+        return render_template('front_page/index.html')
 
 
 # test表示用ページ
-@app.route('/view')
+@app.route('/')
 def index():
-    return render_template('index.html')
-    # "/view" を呼び出したときには、indexが表示される。
+    return render_template('front_page/index.html')
+    # "/" を呼び出したときには、indexが表示される。
 
 '''
 def gen(camera):

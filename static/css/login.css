@@ -1,0 +1,129 @@
+@charset "utf-8";
+/*
+* {
+  overflow-x: hidden;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+*/
+body {
+  background-color: #f9f9f9;
+}
+@media only screen and (max-width: 600px) {
+
+  .page {
+    /*max-width: 1400px;*/
+    /*background: rgba(196,196,196,1);*/
+    margin: 7% auto 0;
+    text-align: center;
+  }
+  .logo img {
+    background: url("../images/logo.png");
+    max-width: 400px;
+    width: 60%;
+  }
+  
+  .form-group input{
+    width: 60%;
+    margin: 20px auto 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .form-group input {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+  }
+  .form-group button {
+    margin-top: 20px;
+    width: 60%;
+    background: #4170BC;
+    color: white;
+  }
+  .form-group button:hover {
+    color: #f8f8f8;
+    background: #79a9f7;
+    /*border: 1px solid #4170BC;*/
+}
+  #register button {
+    width: 60%;
+    color: #4170BC;
+    border: 1px solid #4170BC;
+  }
+  #register button:hover {
+    background: #eeeeee;
+    color: #79a9f7;
+    border: 1px solid #79a9f7;
+  }
+  /*
+  .v14_0 {
+    width: 375px;
+    height: 812px;
+    background: rgba(247,247,247,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px; 
+    overflow: hidden;
+  }
+  .v14_1 {
+    width: 187px;
+    height: 163px;
+    background: rgba(196,196,196,1);
+    opacity: 1;
+    position: absolute;
+    top: 103px;
+    left: 94px;
+    overflow: hidden;
+  }
+  .v14_2 {
+    width: 186px;
+    height: 42px;
+    background: rgba(0,143,189,0.6100000143051147);
+    opacity: 1;
+    position: absolute;
+    top: 586px;
+    left: 95px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    overflow: hidden;
+  }
+  .v14_3 {
+    width: 76px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 596px;
+    left: 150px;
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 19px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v14_4 {
+    width: 192px;
+    height: 24px;
+    background: rgba(238,238,238,1);
+    opacity: 1;
+    position: absolute;
+    top: 446px;
+    left: 89px;
+    border: 1px solid rgba(40,40,40,1);
+    overflow: hidden;
+  }
+  .v14_5 {
+    width: 192px;
+    height: 24px;
+    background: rgba(238,238,238,1);
+    opacity: 1;
+    position: absolute;
+    top: 494px;
+    left: 89px;
+    border: 1px solid rgba(40,40,40,1);
+    overflow: hidden;
+  }
+  */
+}

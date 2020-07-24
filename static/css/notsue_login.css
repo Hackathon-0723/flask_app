@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* login.html */
+.page {
+    max-width: 1400px;
+    margin: 7% auto 0;
+    text-align: center;
+}
+.logo img {
+    max-width: 600px;
+    width: 60%;
+}
+.form-group input{
+    width: 60%;
+    margin: 20px auto 0;
+}
+.form-group input {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+.form-group button {
+    margin-top: 20px;
+    width: 60%;
+    background: #4170BC;
+    color: white;
+}
+.form-group button:hover {
+    color: #4170BC;
+    background: white;
+    border: 1px solid #4170BC;
+}
+#register button {
+    width: 60%;
+    color: #4170BC;
+    border: 1px solid #4170BC;
+}
+#register button:hover {
+    color: white;
+    background: #4170BC;
+}
+/* ----- */
