@@ -2,8 +2,8 @@ import cv2
 
 class VideoCamera(object):
     def __init__(self):
-        self.video = cv2.VideoCapture(0)
-
+        # self.video = cv2.VideoCapture(-1)
+        self.video = cv2.VideoCapture('../ml/dataset/trimed/oyayubi_left/0.mp4')
         # Opencvのカメラをセットします。(0)はノートパソコンならば組み込まれているカメラ
 
     def __del__(self):
@@ -11,8 +11,10 @@ class VideoCamera(object):
 
     def get_frame(self):
         success, image = self.video.read()
-        ret, jpeg = cv2.imencode('.jpg', image)
-        return jpeg.tobytes()
+        return image
+        # print(image.shape)
+        # ret, jpeg = cv2.imencode('.jpg', image)
+        # return jpeg.tobytes()
 
         # read()は、二つの値を返すので、success, imageの2つ変数で受けています。
         # OpencVはデフォルトでは raw imagesなので JPEGに変換

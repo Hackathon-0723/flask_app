@@ -13,6 +13,10 @@ from PIL import Image
 import pymysql
 #import object_detection_api
 
+from src.model import MLModel
+
+mymodel = MLModel('./test.pt')
+
 app = Flask(__name__)
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'gif'])
@@ -41,11 +45,12 @@ def img():
         # pillow から opencvに変換
         imgPIL = Image.open(io.BytesIO(img))
         imgCV = np.asarray(imgPIL)
-
-        imgCV = cv2.bitwise_not(imgCV)
-
-        # 好きな処理を入れる
-        return render_template('index.html')
+        cv2.imwrite('./templates/dst/test.jpg', imgCV)
+        mymodel.predict(imgCV)
+        # imgCV = cv2.bitwise_not(imgCV)
+    # 好きな処理を入れる
+        return "success"
+        #return render_template('index.html')
 
     if request.method == "GET":
         return render_template('index.html')
@@ -57,9 +62,13 @@ def index():
     return render_template('index.html')
     # "/view" を呼び出したときには、indexが表示される。
 
+'''
 def gen(camera):
     while True:
-        frame = camera.get_frame()
+        image = camera.get_frame()
+        mymodel.predict(image)
+        ret, jpeg = cv2.imencode('.jpg', image)
+        frame = jpeg.tobytes()
         yield (b'--frame\r\n'
               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
         #return 1
@@ -67,7 +76,7 @@ def gen(camera):
 # Generatorとして働くためにgenとの関数名にしている
 # Content-Type（送り返すファイルの種類として）multipart/x-mixed-replace を利用。
 # HTTP応答によりサーバーが任意のタイミングで複数の文書を返し、紙芝居的にレンダリングを切り替えさせるもの。
-
+'''
 
 # ストリーミングサンプル用ページ
 @app.route('/feed')
@@ -78,15 +87,8 @@ def gen():
     while True:
         with open('./templates/img/test.jpg', 'rb') as f:
             img = f.read()
-
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + img + b'\r\n')
-
-
-# あとでfilename追加する
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
 
 
 if __name__ == '__main__':
