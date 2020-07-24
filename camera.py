@@ -3,7 +3,8 @@ import cv2
 class VideoCamera(object):
     def __init__(self):
         # self.video = cv2.VideoCapture(-1)
-        self.video = cv2.VideoCapture('../ml/dataset/trimed/oyayubi_left/0.mp4')
+        self.video = cv2.VideoCapture('./dataset/oyayubi_left/0.mp4')
+        print("video ok")
         # Opencvのカメラをセットします。(0)はノートパソコンならば組み込まれているカメラ
 
     def __del__(self):

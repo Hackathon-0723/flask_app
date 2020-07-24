@@ -54,13 +54,12 @@ def img():
         return render_template('front_page/index.html')
 
 
-# test表示用ページ
+# ログイン表示用ページ
 @app.route('/')
 def index():
     return render_template('front_page/index.html')
     # "/" を呼び出したときには、indexが表示される。
 
-'''
 def gen(camera):
     while True:
         image = camera.get_frame()
@@ -69,24 +68,23 @@ def gen(camera):
         frame = jpeg.tobytes()
         yield (b'--frame\r\n'
               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-        #return 1
+
+
+# testモデルページ
+@app.route('/video_feed')
+def video_feed():
+    #return "gen start"
+    return Response(gen(VideoCamera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+# '/video_feed'にアクセスするとストリーミング開始
+
+'''
 # returnではなくジェネレーターのyieldで逐次出力。
 # Generatorとして働くためにgenとの関数名にしている
 # Content-Type（送り返すファイルの種類として）multipart/x-mixed-replace を利用。
 # HTTP応答によりサーバーが任意のタイミングで複数の文書を返し、紙芝居的にレンダリングを切り替えさせるもの。
 '''
 
-# ストリーミングサンプル用ページ
-@app.route('/feed')
-def feed():
-    return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
-
-def gen():
-    while True:
-        with open('./templates/img/test.jpg', 'rb') as f:
-            img = f.read()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + img + b'\r\n')
 
 
 if __name__ == '__main__':
