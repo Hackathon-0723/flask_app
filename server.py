@@ -23,7 +23,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def getConnection():
     return pymysql.connect(
         host='localhost',
-        db='mydb',
+        db='test',
         user='root',
         password='',
         charset='utf8',

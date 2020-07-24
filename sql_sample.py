@@ -1,11 +1,11 @@
-# 接続確認用
+# test接続確認用,OK
 import pymysql
 
 print("データベース接続確認")
 
 connection = pymysql.connect(
     host="localhost",
-    db="mydb",
+    db="test",
     user="root",
     password="",
     charset="utf8",
@@ -13,13 +13,15 @@ connection = pymysql.connect(
 )
 
 # 以下テーブルに合わせて変更
-sql = "SELECT * FROM players"
-cursor = connection.cursor()
-cursor.execute(sql)
-players = cursor.fetchall()
+try:
+    with connection.cursor() as cursor:
+        sql = "SELECT * FROM post"
+        cursor.execute(sql)
 
-cursor.close()
-connection.close()
+        dbdata = cursor.fetchall()
+        for rows in dbdata:
+            print(rows)
 
-for player in players:
-    print(player["name"])
+finally:
+    connection.close()
+
