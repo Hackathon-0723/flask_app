@@ -2,8 +2,7 @@
 # すること2：modelへの画像渡し
 # すること3：必要ならDBとのリンク
 
-
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
 from camera import VideoCamera
 import numpy as np
 import cv2
@@ -12,7 +11,7 @@ import os
 import string
 from PIL import Image
 import pymysql
-import object_detection_api
+#import object_detection_api
 
 app = Flask(__name__)
 UPLOAD_FOLDER = './uploads'
@@ -34,20 +33,23 @@ def getConnection():
 
 # カメラ画像の取得処理ページ
 # APIに画像を流す
-@api.route("/img", methods=["POST"])
+@app.route("/img", methods=["POST","GET"])
 def img():
-    img = request.files["video"].read()
+    if request.method == "POST":
+        img = request.files["video"].read()
 
-    # pillow から opencvに変換
-    imgPIL = Image.open(io.BytesIO(img))
-    imgCV = np.asarray(imgPIL)
+        # pillow から opencvに変換
+        imgPIL = Image.open(io.BytesIO(img))
+        imgCV = np.asarray(imgPIL)
 
-    imgCV = cv2.bitwise_not(imgCV)
+        imgCV = cv2.bitwise_not(imgCV)
 
-    # 好きな処理を入れる
+        # 好きな処理を入れる
+        return render_template('index.html')
 
-    return "success"
-
+    if request.method == "GET":
+        return render_template('index.html')
+        
 
 # test表示用ページ
 @app.route('/view')
@@ -68,7 +70,7 @@ def gen(camera):
 
 
 # ストリーミングサンプル用ページ
-@api.route('/feed')
+@app.route('/feed')
 def feed():
     return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
@@ -90,7 +92,7 @@ def uploaded_file(filename):
 if __name__ == '__main__':
     #app.run(host='0.0.0.0', debug=True)
     app.run(host='0.0.0.0', port=5000, ssl_context=('openssl/server.crt', 'openssl/server.key'), threaded=True, debug=True)
-# 0.0.0.0はすべてのアクセスを受け付けます。    
+# 0.0.0.0はすべてのアクセスを受け付ける    
 # webブラウザーには、「localhost:5000」と入力
 
 
