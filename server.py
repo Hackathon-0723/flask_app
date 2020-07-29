@@ -16,6 +16,7 @@ import pymysql
 from src.model import MLModel
 
 mymodel = MLModel('./test.pt')
+label = "first"
 
 app = Flask(__name__)
 UPLOAD_FOLDER = './uploads'
@@ -57,17 +58,29 @@ def img():
 # ログイン表示用ページ
 @app.route('/')
 def index():
+    #image = camera.get_frame()
+    #label = mymodel.predict(image)
     return render_template('front_page/index.html')
     # "/" を呼び出したときには、indexが表示される。
-
 def gen(camera):
+    label_array =[]
+    i = 0
     while True:
         image = camera.get_frame()
-        mymodel.predict(image)
+        label = mymodel.predict(image)
+        label_array.append(label)
+        if len(label_array) > 3:
+            if label_array[i] == label_array[i+1]:
+                i+=1
+                print(i)
         ret, jpeg = cv2.imencode('.jpg', image)
         frame = jpeg.tobytes()
         yield (b'--frame\r\n'
               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+        if i > 10:
+            # 一定回同じ予測結果を返した時、表示する
+            return render_template('front_page/index.html', label=label)
+            # 複数回レンダーはできないぽい、値の渡し方・逐一表示の方法を考える必要あり
 
 
 # testモデルページ
@@ -83,6 +96,10 @@ def video_feed():
 # Generatorとして働くためにgenとの関数名にしている
 # Content-Type（送り返すファイルの種類として）multipart/x-mixed-replace を利用。
 # HTTP応答によりサーバーが任意のタイミングで複数の文書を返し、紙芝居的にレンダリングを切り替えさせるもの。
+
+# プロセスIDの削除方法
+# 1.プロセスの確認 $ lsof -i :5000 | grep python
+# 2.該当プロセスIDの削除 $ kill -9 ID
 '''
 
 

@@ -6,7 +6,6 @@ import PIL
 from torchvision import transforms
 from . import consts
 
-
 class Identity(nn.Module):
     def __init__(self):
         super().__init__()
@@ -82,4 +81,6 @@ class MLModel():
         else:
             pred_label = None
         print('predicted label: ', pred_label)
+        # ここでラベリング結果を出力
+        # flaskに組み込む
         return pred_label

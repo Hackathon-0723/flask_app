@@ -1,11 +1,17 @@
-CREATE TABLE `post` (
+CREATE TABLE `tech` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `post` (`id`, `content`) VALUES
-(1, 'おはようございます。いい天気ですね!!'),
-(2, '太郎さん、新聞が届いていますよ。'),
-(3, '天気がいいのは良いですが、ちと暑いですね'),
-(4, '今日もお仕事ご苦労さまです');
+INSERT INTO `tech` (`id`, `content`) VALUES
+(1, 'tenohira'),
+(2, 'tenokou_left'),
+(3, 'tenokou_right'),
+(4, 'yubisaki_left'),
+(5, 'yubisaki_right'),
+(6, 'yubinoaida'),
+(7, 'oyayubi_left'),
+(8, 'oyayubi_right'),
+(9, 'tekubi_left'),
+(10, 'tekubi_right');
